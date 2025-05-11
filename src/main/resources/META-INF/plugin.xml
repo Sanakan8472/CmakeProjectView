@@ -5,11 +5,24 @@
     <vendor>sanakan8472</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.clion</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
+    <projectListeners>
+        <listener
+                class="com.github.sanakan8472.cmakeprojectview.projectView.CpvProjectViewEventListener"
+                topic="com.jetbrains.cidr.cpp.cmake.workspace.CMakeWorkspaceListener"/>
+        <listener
+                class="com.github.sanakan8472.cmakeprojectview.projectView.CpvProjectViewEventListener"
+                topic="com.intellij.execution.ExecutionTargetListener"/>
+        <listener
+                class="com.github.sanakan8472.cmakeprojectview.projectView.CpvProjectViewEventListener"
+                topic="com.jetbrains.cidr.project.workspace.CidrWorkspaceListener"/>
+    </projectListeners>
+
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.sanakan8472.cmakeprojectview.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
         <postStartupActivity implementation="com.github.sanakan8472.cmakeprojectview.startup.MyProjectActivity" />
+        <projectViewPane implementation="com.github.sanakan8472.cmakeprojectview.projectView.CpvProjectView"/>
     </extensions>
 </idea-plugin>
